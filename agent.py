@@ -2,7 +2,8 @@
 returns a reply, so a CLI, a web UI or an eval script can all call it."""
 from pathlib import Path
 from llm import call_llm
-
+import tools
+import json
 BASE_DIR = Path(__file__).parent
 
 SYSTEM_PROMPT = (
@@ -24,13 +25,30 @@ def text_of(response):
 def run_turn(history, session):
     """Handle one customer turn. `history` is the full conversation (it grows
     across turns). `session` will hold facts our code controls (e.g. verified
-    customer) - unused in step 1, but in place so nothing needs rewiring later."""
+    customer)."""
     for step in range(MAX_STEPS):
-        response = call_llm(SYSTEM_PROMPT, history)
+        response = call_llm(SYSTEM_PROMPT, history, tools.TOOL_SCHEMAS)
         history.append({"role": "assistant", "content": response.content})
 
+        # Everything that is not a tool call is a reply that should be forwarded to the user.
         if response.stop_reason != "tool_use":  # model wrote a reply: turn done
             return text_of(response)
-        # Step 2 adds tool handling here.
+        
+        # Ok, let's handle tool use.
+        tool_results = [] # An empty list to store the results of the tool calls.
+        for block in response.content:
+            if block.type == "tool_use":
+                result = tools.execute_tool(block.name, block.input, session)
+
+                # Debug info - how did the tool interaction go? (remove later)
+                print(f"  [tool] {block.name} {block.input} -> {result}")
+
+                tool_results.append({
+                    "type": "tool_result",
+                    "tool_use_id": block.id,     # links the result to its request
+                    "content": json.dumps(result),
+                })
+
+        history.append({"role": "user", "content": tool_results})   # then loop again
 
     return FALLBACK
