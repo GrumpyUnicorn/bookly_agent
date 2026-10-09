@@ -3,7 +3,15 @@ returns a reply, so a CLI, a web UI or an eval script can all call it."""
 from pathlib import Path
 from llm import call_llm
 
-SYSTEM_PROMPT = (Path(__file__).parent / "prompts" / "system.md").read_text()
+BASE_DIR = Path(__file__).parent
+
+SYSTEM_PROMPT = (
+    (BASE_DIR / "prompts" / "system.md").read_text()
+    + "\n\n<knowledge>\n"
+    + (BASE_DIR / "knowledge" / "policies.md").read_text()
+    + "\n</knowledge>"
+)
+
 MAX_STEPS = 5  # safety cap so a confused model can never loop forever
 FALLBACK = "Sorry, I couldn't complete that. Let me connect you with a colleague."
 
