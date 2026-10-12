@@ -54,6 +54,10 @@ Bookly is an online bookstore based in Stockholm, Sweden, selling printed books 
 
 ## Accounts
 
+### Customer ID
+- Every customer has a customer ID (for example C-001). It's shown in the account
+  settings and on every order confirmation email.
+
 ### Password reset
 - Customers can reset their password through the "Forgot password" link on the login page.
 - Support can also send a password reset link to the email address registered on the account.

@@ -1,0 +1,66 @@
+{
+    "BK-1042": {
+      "customer_id": "C-001",
+      "order_date": "2026-10-07",
+      "status": "shipped",
+      "items": [
+        {"title": "The Midnight Library", "format": "printed", "price_sek": 189},
+        {"title": "Project Hail Mary", "format": "printed", "price_sek": 219}
+      ],
+      "carrier": "PostNord",
+      "tracking_number": "PN884512SE",
+      "estimated_delivery": "2026-10-13"
+    },
+    "BK-1043": {
+      "customer_id": "C-001",
+      "order_date": "2026-09-20",
+      "status": "delivered",
+      "items": [
+        {"title": "Klara and the Sun", "format": "printed", "price_sek": 179}
+      ],
+      "carrier": "PostNord",
+      "tracking_number": "PN884990SE",
+      "delivered_date": "2026-09-24"
+    },
+    "BK-1044": {
+      "customer_id": "C-001",
+      "order_date": "2026-10-02",
+      "status": "delivered",
+      "items": [
+        {"title": "Pride and Prejudice", "format": "ebook", "price_sek": 59}
+      ],
+      "delivered_date": "2026-10-02"
+    },
+    "BK-1050": {
+      "customer_id": "C-002",
+      "order_date": "2026-10-10",
+      "status": "processing",
+      "items": [
+        {"title": "Dune", "format": "printed", "price_sek": 199}
+      ],
+      "estimated_delivery": "2026-10-19"
+    },
+    "BK-1051": {
+      "customer_id": "C-002",
+      "order_date": "2026-09-28",
+      "status": "delayed",
+      "items": [
+        {"title": "The Overstory", "format": "printed", "price_sek": 229}
+      ],
+      "carrier": "PostNord",
+      "tracking_number": "PN770288SE",
+      "estimated_delivery": "2026-10-14",
+      "note": "Held at customs in Norway"
+    },
+    "BK-0987": {
+      "customer_id": "C-003",
+      "order_date": "2026-08-10",
+      "status": "delivered",
+      "items": [
+        {"title": "Pachinko", "format": "printed", "price_sek": 209}
+      ],
+      "carrier": "PostNord",
+      "tracking_number": "PN770134SE",
+      "delivered_date": "2026-08-14"
+    }
+  }

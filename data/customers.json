@@ -1,0 +1,23 @@
+{
+    "C-001": {
+      "name": "Anna Berg",
+      "fname": "Anna",
+      "email": "anna.berg@example.com",
+      "city": "Stockholm",
+      "country": "Sweden"
+    },
+    "C-002": {
+      "name": "Johan Lind",
+      "fname": "Johan",
+      "email": "johan.lind@example.com",
+      "city": "Oslo",
+      "country": "Norway"
+    },
+    "C-003": {
+      "name": "Sara Ek",
+      "fname": "Sara",
+      "email": "sara.ek@example.com",
+      "city": "Copenhagen",
+      "country": "Denmark"
+    }
+  }
