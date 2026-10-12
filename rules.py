@@ -33,7 +33,7 @@ from zoneinfo import ZoneInfo
 
 
 # --- Policy values --------------------------------------------------------
-# These numbers must match knowledge/policies.md (checked at startup in agent.py).
+# These numbers must match knowledge/policies.md 
 
 RETURN_WINDOW_DAYS = 30   # printed books can be returned this many days after delivery
 RETURN_FEE_SEK = 49       # deducted from the refund when the customer changed their mind

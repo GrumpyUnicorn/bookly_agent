@@ -1,5 +1,5 @@
 """Thin wrapper around the LLM API. The rest of the code only calls call_llm(),
-so switching model or provider later means changing this one file."""
+so switching model later means changing this one file."""
 import os
 from anthropic import Anthropic
 from dotenv import load_dotenv
@@ -13,7 +13,7 @@ def call_llm(system, messages, tools=None):
     """Calls to LLM is stateless, so we pass the system prompt (from system.md)
     and the whole message history (user questions and llm answers) every time. 
     
-    Later, when we add tools, we pass a list of tools (as dictionaries) via the `tools` parameter.
+    We pass a list of tools (as a list of dictionaries) via the `tools` parameter.
     The Anthropic message API includes 'native tool use'.
     """
     kwargs = dict(model=MODEL, max_tokens=1024, system=system, messages=messages)

@@ -11,7 +11,8 @@ CUSTOMERS_FILE = DATA_DIR / "customers.json" # This is the fake CRM/CDP
 CUSTOMERS = json.loads(CUSTOMERS_FILE.read_text())
 
 # --- Fake order managment system ---
-ORDERS = json.loads((Path(__file__).parent / "data" / "orders.json").read_text())
+ORDERS_FILE = DATA_DIR / "orders.json"
+ORDERS = json.loads(ORDERS_FILE.read_text())
 
 # --- The tool functions: what actually runs ---
 
@@ -49,7 +50,7 @@ def verify_customer(customer_id, customer_email, session):
     # This is a lightweight id check to verify the customer. Demo level.
 
     # No mid-session id switching allowed in this demo.
-    if session.get("customer_id") == customer_id: 
+    if session.get("customer_id"): 
         return{"error": "already verified"}
     
     # Cleaning up the input
@@ -160,8 +161,7 @@ TOOL_SCHEMAS = [
     {
         "name": "verify_customer",
         "description": "Verify the customer by their customer_id and email address. "
-                       "Call this before answering anything that depends on the customer's name or id. "
-                       "Never ask for or set a password; the link can only go to the registered address.",
+                       "Call this before answering anything about the customer's orders, returns or cancellations.",
         "input_schema": {
             "type": "object",
             "properties": {

@@ -44,7 +44,7 @@ The system prompt is a merge of two documents:
 |---|---|---|---|---|
 | `get_current_time` | Returns today's date, weekday and time in Sweden | – | No | Read |
 | `send_password_reset` | Mocks sending a reset link; same reply whether or not the email is registered | `email` | No | Action |
-| `verify_customer` | Checks customer ID and email against the customer data | `customer_id`, `email` | – | Sets session |
+| `verify_customer` | Checks customer ID and email against the customer data | `customer_id`, `customer_email` | – | Sets session |
 | `get_my_orders` | Returns all orders of the verified customer | – | Yes | Read |
 | `request_return` | Starts a change-of-mind return if the rules allow it, and calculates the refund | `order_id` | Yes | Action |
 | `cancel_order` | Cancels an order if it hasn't shipped yet | `order_id` | Yes | Action |

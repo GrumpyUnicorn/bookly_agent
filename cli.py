@@ -4,7 +4,7 @@ import sys
 VERBOSE = "--verbose" in sys.argv or "--debug" in sys.argv
 
 # history is the message history (user questions and llm answers)
-# session is the session state (e.g. the conversation id)
+# session is the session state (the name and id when a customer has been verified)
 history, session = [], {}
 print("Bookly support - type 'quit' to exit\n")
 
