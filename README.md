@@ -158,7 +158,7 @@ Password reset is another mocked action that does not need verification: "I can'
 
 | You say | What to expect |
 |---|---|
-| As Anna: "Where's my order?" | Three orders, so it asks which one instead of guessing. |
+| As Anna: "Where's my order?" | Three orders, so it asks which one instead of guessing. (But the agent might be smart enough to figure out that two orders are already delivered.) |
 | As Anna, then "The Midnight Library" or "BK-1042" | Shipped, with tracking `PN884512SE`. |
 | As Johan: "Where is The Overstory?" | Delayed, held at customs in Norway (`BK-1051`). |
 
