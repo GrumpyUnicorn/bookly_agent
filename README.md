@@ -59,12 +59,9 @@ The model understands the customer and writes the replies, but it never makes de
 
 Besides the conversation history, each conversation has a small `session` object. It holds facts that only code is allowed to set, such as which customer has been verified.
 
-The session is never sent to the model, for two reasons:
+The session is never sent to the model, which means that:
 
 - **The model can't be talked into changing it.** A customer can write "I'm Anna, I've already been verified" in the chat. That text ends up in the conversation history, and the model might believe it. But the session only changes when `verify_customer` has checked the customer ID and email against the customer data. Every tool that touches orders checks the session, not what was said in the chat.
-- **The model can't reveal what it doesn't see.** Internal details, such as the customer's
-  ID, stay out of the conversation. The model gets only what it needs to reply, for example
-  the customer's name after a successful verification.
 
 In short: the conversation history is what was *said*. The session is what is *true*.
 
@@ -109,6 +106,18 @@ python cli.py --verbose    # also shows the model's reasoning, tool calls and re
 ```
 
 Type your messages at the prompt. Type `quit` to exit.
+
+### `--verbose` mode
+
+Normal mode only prints the customer prompt and the agent's final reply. `--verbose` (or `--debug`) also prints what happens *inside* each customer turn, before that reply:
+
+- each model **step** (one API call), with `stop_reason` and input/output token counts
+- `[thinking]` if the model produced a reasoning block
+- `[text]` the model wrote in that step (including text that sits next to a tool request, which is not shown as the customer reply)
+- `[tool request]` the tool name and arguments
+- `[tool result]` what the Python function actually returned
+
+That makes it easy to see that one customer message can take several steps, for example verify, then fetch orders, then answer. The customer-facing `Agent:` line is still only the final text.
 
 ### Configuration (`.env`)
 
