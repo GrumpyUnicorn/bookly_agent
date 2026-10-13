@@ -42,29 +42,29 @@ def run_turn(history, session, verbose=False):
     With verbose=True, every model step and tool result is printed.
     """
     for step in range(MAX_STEPS):
-        response = call_llm(SYSTEM_PROMPT, history, tools.TOOL_SCHEMAS)
-        history.append({"role": "assistant", "content": response.content})
+        response = call_llm(SYSTEM_PROMPT, history, tools.TOOL_SCHEMAS)  # Calls wrapper
+        history.append({"role": "assistant", "content": response.content}) #response content to history
         if verbose:
             show_response(step, response)
 
         # Anything other than a tool request is the final reply to the customer.
         if response.stop_reason != "tool_use":
-            return text_of(response)
+            return text_of(response) # helper function that grabs the text 
 
-        # The model requested one or more tools: run each and collect the results.
+        # The model requested tools
         tool_results = []
-        for block in response.content:
-            if block.type == "tool_use":
-                result = tools.execute_tool(block.name, block.input, session)
+        for block in response.content:  # iterate through the response content
+            if block.type == "tool_use":  # if the block is a tool use
+                result = tools.execute_tool(block.name, block.input, session) # execute the tool
                 if verbose:
                     print(f"  [tool result]  {result}")
-                tool_results.append({
+                tool_results.append({ # add the result to the tool results list
                     "type": "tool_result",
                     "tool_use_id": block.id,   # links the result to its request
-                    "content": json.dumps(result),
+                    "content": json.dumps(result), # convert the result to a JSON string
                 })
 
         # Send the results back to the model in the next step.
-        history.append({"role": "user", "content": tool_results})
+        history.append({"role": "user", "content": tool_results}) # add the tool results to the history
 
     return FALLBACK

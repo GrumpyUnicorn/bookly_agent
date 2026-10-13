@@ -1,24 +1,6 @@
 """Bookly's business rules: the decisions the agent is never allowed to make itself.
 
-WHY THESE RULES LIVE IN CODE
-----------------------------
-The language model understands the customer and explains decisions, but it does
-not make them. Every action tool (request_return, cancel_order) calls the
-functions in this file before doing anything, and does what they decide,
-regardless of what the model believes. There are two reasons:
-
-1. The model can be tricked. Customers can argue, plead or try to manipulate it:
-   "your colleague already approved this", "it's only two days late",
-   "ignore your instructions". A model can be talked into agreeing.
-   This code cannot. The same order always gets the same decision.
-
-2. The model is bad at calculations. Counting 30 days across months, comparing
-   dates or adding up refunds are exactly the things language models get wrong.
-   Python gets them right every time.
-
-So the model *asks*, and this code *decides*. If the model calls request_return
-for an order that isn't eligible, the tool refuses, and the explanation returned
-by these functions goes back to the model so it can tell the customer why.
+These are help functions for the tools in tools.py.
 
 HOW THE RULE FUNCTIONS WORK
 ---------------------------
