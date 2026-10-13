@@ -32,6 +32,7 @@ Bookly is an online bookstore based in Stockholm, Sweden, selling printed books 
 ### Changing or cancelling an order
 - An order can be changed or cancelled free of charge until it has shipped.
 - Once an order has shipped, it can no longer be cancelled, but it can be returned under the return policy below.
+- E-books and printed books are always handled as separate orders. If you buy both at once, you receive two order numbers.
 
 ## Returns and refunds
 

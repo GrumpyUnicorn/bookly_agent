@@ -49,6 +49,8 @@ The system prompt is a merge of two documents:
 | `request_return` | Starts a change-of-mind return if the rules allow it, and calculates the refund | `order_id` | Yes | Action |
 | `cancel_order` | Cancels an order if it hasn't shipped yet | `order_id` | Yes | Action |
 
+Right now, returns and cancelations work on whole orders. A production version might want to allow for return of individual books.
+
 ## Design outline
 
 ### The model asks, the code decides
