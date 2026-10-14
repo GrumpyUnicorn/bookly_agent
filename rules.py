@@ -13,7 +13,6 @@ Each rule function returns two values: (allowed, explanation).
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
-
 # --- Policy values --------------------------------------------------------
 # These numbers must match knowledge/policies.md 
 

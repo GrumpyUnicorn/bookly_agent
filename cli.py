@@ -20,5 +20,4 @@ while True:
         break
     if not customer_message: #empty line - ask again
         continue
-    history.append({"role": "user", "content": customer_message})
-    print(f"Agent: {run_turn(history, session, VERBOSE)}\n")
+    print(f"Agent: {run_turn(history, session, customer_message, VERBOSE)}\n")

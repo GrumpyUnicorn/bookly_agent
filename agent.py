@@ -34,10 +34,12 @@ def show_response(step, response):
         elif block.type == "tool_use":
             print(f"  [tool request] {block.name} {block.input}")
 
-def run_turn(history, session, verbose=False):
+def run_turn(history, session, new_customer_message, verbose=False):
+    # add the new customer message as the last entry in the history
+    history.append({"role": "user", "content": new_customer_message})
+    
     """Handle one customer turn and return the agent's reply.
-
-    `history` is the full conversation; it grows across turns.
+    `history` is the full conversation up until now; it grows across turns.
     `session` holds facts only code controls, such as the verified customer.
     With verbose=True, every model step and tool result is printed.
     """
@@ -67,4 +69,5 @@ def run_turn(history, session, verbose=False):
         # Send the results back to the model in the next step.
         history.append({"role": "user", "content": tool_results}) # add the tool results to the history
 
+    history.append({"role": "assistant", "content": FALLBACK})
     return FALLBACK
